@@ -1,0 +1,66 @@
+.bonus-shell {
+  width: min(480px, 94%);
+  margin: 16px auto;
+  text-align: center;
+}
+.back-link {
+  display: inline-block;
+  margin-bottom: 12px;
+  text-decoration: none;
+}
+.bonus-lead {
+  color: var(--text-b, #ddcf96);
+  margin-bottom: 16px;
+}
+.bonus-q {
+  font-size: 1.1rem;
+  margin: 14px 0;
+  min-height: 2.5em;
+}
+.bonus-choices {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin: 16px 0;
+}
+.bonus-result {
+  min-height: 1.5em;
+  font-weight: 600;
+}
+.personal-best-line {
+  color: #ddcf96;
+  margin: 14px 0;
+  font-size: 0.95rem;
+}
+.hidden {
+  display: none !important;
+}
+
+button,
+.gold-btn {
+  touch-action: manipulation;
+}
+
+.bonus-choices button,
+.gold-btn {
+  min-height: 48px;
+  border-radius: 12px;
+  transition: transform 0.12s ease, box-shadow 0.15s ease;
+}
+
+.bonus-choices button:active,
+.gold-btn:active {
+  transform: scale(0.98);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .bonus-choices button,
+  .gold-btn {
+    transition: none;
+  }
+
+  .bonus-choices button:active,
+  .gold-btn:active {
+    transform: none;
+  }
+}

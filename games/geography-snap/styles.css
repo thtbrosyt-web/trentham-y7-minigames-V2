@@ -1,0 +1,74 @@
+.game-shell {
+  width: min(520px, 94%);
+  margin: 14px auto;
+  text-align: center;
+}
+.back-link { text-decoration: none; display: inline-block; margin-bottom: 8px; }
+.hint { color: #ddcf96; font-size: 0.95rem; margin: 8px 0; }
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 8px;
+  margin: 14px 0;
+}
+@media (max-width: 480px) {
+  .card-grid { grid-template-columns: repeat(3, 1fr); }
+}
+.card {
+  aspect-ratio: 1;
+  border-radius: 10px;
+  border: 2px solid #54461b;
+  background: #222;
+  color: #fff6cc;
+  font-size: 0.78rem;
+  font-weight: 700;
+  cursor: pointer;
+  padding: 4px;
+  display: grid;
+  place-items: center;
+  text-align: center;
+  line-height: 1.15;
+  user-select: none;
+  transition:
+    transform 0.12s ease,
+    box-shadow 0.15s ease,
+    opacity 0.2s ease;
+}
+
+.card:active:not(.matched):not(:disabled) {
+  transform: scale(0.96);
+}
+.card.face-down {
+  background: linear-gradient(145deg, #3d3512, #1f1a0a);
+  color: transparent;
+}
+.card.face-down::after {
+  content: "?";
+  color: var(--gold-a, #ffe14f);
+  font-size: 1.4rem;
+}
+.card.matched {
+  opacity: 0.45;
+  cursor: default;
+  border-color: #2ecc71;
+}
+
+.card,
+button,
+.gold-btn {
+  touch-action: manipulation;
+}
+
+.gold-btn {
+  min-height: 48px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .card {
+    transition: none;
+  }
+
+  .card:active:not(.matched):not(:disabled) {
+    transform: none;
+  }
+}

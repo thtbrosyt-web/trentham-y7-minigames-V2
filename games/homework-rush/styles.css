@@ -1,0 +1,43 @@
+.game-shell {
+  width: min(650px, 94%);
+  margin: 14px auto;
+  text-align: center;
+}
+.back-link { text-decoration: none; display: inline-block; margin-bottom: 8px; }
+.answers {
+  margin-top: 10px;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+}
+.game-shell .gold-btn:not(.back-link) {
+  min-height: 48px;
+  font-size: 1.05rem;
+  padding: 12px 14px;
+}
+@media (max-width: 650px) {
+  .answers { grid-template-columns: 1fr; }
+}
+
+button,
+.gold-btn {
+  touch-action: manipulation;
+}
+
+.game-shell .gold-btn:not(.back-link) {
+  transition: transform 0.12s ease, box-shadow 0.15s ease;
+}
+
+.game-shell .gold-btn:not(.back-link):active {
+  transform: scale(0.98);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .game-shell .gold-btn:not(.back-link) {
+    transition: none;
+  }
+
+  .game-shell .gold-btn:not(.back-link):active {
+    transform: none;
+  }
+}

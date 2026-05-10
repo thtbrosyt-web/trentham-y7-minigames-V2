@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="ta-game-help" content="Tap Left or Right to switch lanes and dodge obstacles. Survive as long as you can.">
+  <meta name="ta-hub-game" content="Hallway Dash">
+  <title>Hallway Dash</title>
+  <link rel="stylesheet" href="../../js/ta-game-mascot.css">
+  <link rel="stylesheet" href="../../styles.css">
+  <link rel="stylesheet" href="../../js/ta-game-ui.css">
+  <link rel="stylesheet" href="./styles.css">
+  <script src="../../js/ta-game-hub-prefs.js"></script>
+</head>
+<body class="ta-game-page">
+  <main class="game-shell">
+    <a href="../../index.html?resume=1" class="gold-btn back-link">Back to Hub</a>
+    <h1>Hallway Dash</h1>
+    <p class="ta-subtitle">Swipe lanes — dodge clutter coming down the corridor.</p>
+    <div id="hud" class="ta-hud-bar" role="status">Score: 0</div>
+    <canvas id="gameCanvas" width="340" height="520"></canvas>
+    <div class="touch-controls ta-touch-row">
+      <button id="leftBtn" class="gold-btn">Left</button>
+      <button id="rightBtn" class="gold-btn">Right</button>
+    </div>
+    <p id="personalBest" class="personal-best-line"></p>  </main>
+  <script src="../../js/ta-game-skip-intro.js"></script>
+  <script src="../../js/core/bridge-global.js"></script>
+  <script src="../../js/ta-game-celebration.js"></script>
+  <script src="../../js/ta-game-ui.js"></script>
+  <script src="../../js/ta-game-mascot.js"></script>
+  <script src="./script.js"></script>
+</body>
+</html>

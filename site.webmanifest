@@ -1,0 +1,18 @@
+{
+  "name": "Trentham Academy Year 7 Minigames",
+  "short_name": "TA Minigames",
+  "description": "Year 7 minigame hub — play, earn XP and coins, badges, shop boosts, backup progress.",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#030303",
+  "theme_color": "#030303",
+  "icons": [
+    {
+      "src": "./favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ]
+}

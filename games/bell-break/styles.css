@@ -1,0 +1,72 @@
+.game-shell {
+  width: min(560px, 94%);
+  margin: 14px auto;
+  text-align: center;
+}
+.back-link { text-decoration: none; display: inline-block; margin-bottom: 8px; }
+.hud { font-size: 1.05rem; margin: 10px 0; }
+.hint { color: #ddcf96; font-size: 0.95rem; margin: 0 0 14px; min-height: 2.6em; }
+.action-btn {
+  width: min(100%, 320px);
+  min-height: 120px;
+  font-size: 1.25rem;
+  margin-bottom: 12px;
+}
+.action-btn.tap-go {
+  background: linear-gradient(130deg, #7fff9a, #2ecc71);
+  color: #0a1f0a;
+  box-shadow: 0 0 18px rgba(46, 204, 113, 0.45);
+}
+.action-btn.wait-phase {
+  opacity: 0.85;
+}
+
+.bell-intro {
+  text-align: left;
+  max-width: 420px;
+  margin: 0 auto 16px;
+  padding: 14px;
+  border: 1px solid #3a3212;
+  border-radius: 14px;
+  background: #171717;
+}
+.bell-intro-lead { color: #ffe288; margin-bottom: 10px; }
+.bell-intro-list { margin: 8px 0 14px; padding-left: 1.2em; color: #ddcf96; }
+.bell-intro-list li { margin: 6px 0; }
+.bell-game-area.hidden { display: none; }
+#introScreen.hidden { display: none; }
+.personal-best-line { color: #ddcf96; margin: 12px 0; font-size: 0.95rem; }
+.ghost-btn {
+  background: transparent;
+  border: 2px solid #ffbf00;
+  color: #ffe14f;
+  margin-top: 8px;
+}
+
+button,
+.gold-btn,
+.action-btn {
+  touch-action: manipulation;
+}
+
+.action-btn,
+.ghost-btn {
+  transition: transform 0.12s ease, box-shadow 0.18s ease, opacity 0.15s ease;
+}
+
+.action-btn:active,
+.ghost-btn:active {
+  transform: scale(0.985);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .action-btn,
+  .ghost-btn {
+    transition: none;
+  }
+
+  .action-btn:active,
+  .ghost-btn:active {
+    transform: none;
+  }
+}

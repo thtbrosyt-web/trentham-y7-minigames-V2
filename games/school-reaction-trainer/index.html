@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="ta-game-help" content="Press Start, wait until you see BELL (green), then tap once — not early.">
+  <meta name="ta-hub-game" content="School Reaction Trainer">
+  <link rel="stylesheet" href="../../js/ta-game-mascot.css">
+  <title>School Reaction Trainer</title>
+  <link rel="stylesheet" href="../../styles.css">
+  <link rel="stylesheet" href="../../js/ta-game-ui.css">
+  <link rel="stylesheet" href="styles.css">
+  <script src="../../js/ta-game-hub-prefs.js"></script>
+</head>
+<body class="ta-game-page">
+  <main class="app-shell">
+    <section id="introScreen" class="screen intro-screen active" aria-label="Intro">
+      <div class="intro-content">
+        <h1 class="trace trace-gold" data-trace="THTLabs">THTLabs</h1>
+        <h2 class="trace trace-white" data-trace="By Matei">By Matei</h2>
+        <p id="introTyped" class="typed-line"></p>
+        <button id="enterGameBtn" class="btn btn-accent hidden" type="button">
+          Start Training
+        </button>
+        <button id="skipIntroBtn" class="btn btn-secondary" type="button">
+          Skip Intro
+        </button>
+      </div>
+    </section>
+
+    <section id="gameScreen" class="screen game-screen" aria-label="School Reaction Trainer">
+      <a href="../../index.html?resume=1" class="gold-btn back-link hub-back-link">Back to Hub</a>
+      <header class="game-header">
+        <h1>School Reaction Trainer</h1>
+        <p class="subtitle">Wait for <span class="accent">BELL!</span> then tap or click fast.</p>
+      </header>
+
+      <div class="ta-panel ta-panel--tight">
+      <section class="scoreboard" aria-label="Scoreboard">
+        <div class="score-card">
+          <span>Last Time</span>
+          <strong id="lastTime">-- ms</strong>
+        </div>
+        <div class="score-card">
+          <span>Best Time</span>
+          <strong id="bestTime">-- ms</strong>
+        </div>
+        <div class="score-card">
+          <span>Score</span>
+          <strong id="scoreValue">0</strong>
+        </div>
+      </section>
+
+      <button id="reactionZone" class="reaction-zone waiting" type="button" aria-live="polite">
+        <span id="zoneText">Press Start to begin</span>
+      </button>
+
+      <p id="feedback" class="feedback">Ready when you are.</p>
+
+      <div class="actions ta-touch-row">
+        <button id="startBtn" class="btn btn-accent" type="button">Start Round</button>
+        <button id="restartBtn" class="btn btn-secondary" type="button">Restart Game</button>
+      </div>
+      </div>
+
+      <section class="scoreboard" aria-label="Your best score">
+        <div class="score-card" style="grid-column:1/-1;">
+          <span>Your best</span>
+          <p id="platformLeaderboard" class="personal-best-line"></p>
+        </div>
+      </section>
+    </section>
+  </main>
+
+  <script src="../../js/ta-game-skip-intro.js"></script>
+  <script src="../../js/core/bridge-global.js"></script>
+  <script src="../../js/ta-game-celebration.js"></script>
+  <script src="../../js/ta-game-ui.js"></script>
+  <script src="../../js/ta-game-mascot.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>

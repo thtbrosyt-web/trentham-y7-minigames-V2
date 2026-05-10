@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="ta-game-help" content="Try Maths, Tap Frenzy, Flags, and Typing — session score adds up for hub XP.">
+  <meta name="ta-hub-game" content="Mini Games Hub">
+  <link rel="stylesheet" href="../../js/ta-game-mascot.css">
+  <title>Mini Games Hub</title>
+  <link rel="stylesheet" href="../../styles.css">
+  <link rel="stylesheet" href="../../js/ta-game-ui.css">
+  <link rel="stylesheet" href="styles.css">
+  <script src="../../js/ta-game-hub-prefs.js"></script>
+</head>
+<body class="ta-game-page">
+  <nav class="hub-exit" aria-label="Leave mini hub">
+    <a href="../../index.html?resume=1" class="gold-btn back-link hub-back-link">Back to Hub</a>
+  </nav>
+  <main class="app">
+    <section id="intro-scene" class="scene active intro-scene">
+      <div class="intro-card">
+        <h1 id="intro-title" class="trace-title">THTLabs</h1>
+        <p id="intro-subtitle" class="trace-subtitle">By Matei</p>
+        <p id="intro-quote" class="typed-quote"></p>
+        <button id="skip-intro-btn" class="action-btn">Skip Intro</button>
+      </div>
+    </section>
+
+    <section id="menu-scene" class="scene ta-panel ta-panel--tight">
+      <h2 class="screen-title">Mini Games Hub</h2>
+      <p class="screen-subtitle">Mix modes — session score travels back to the hub.</p>
+      <p id="hub-score" class="screen-subtitle">Session Score: 0</p>
+      <div class="menu-grid">
+        <button class="menu-btn" data-game="maths">Maths Quiz</button>
+        <button class="menu-btn" data-game="reaction">Tap Frenzy</button>
+        <button class="menu-btn" data-game="flag">Flag Quiz</button>
+        <button class="menu-btn" data-game="typing">Typing Game</button>
+      </div>
+      <h3>Your best</h3>
+      <p id="personalBest" class="personal-best-line"></p>
+    </section>
+
+    <section id="maths-scene" class="scene game-scene ta-panel ta-panel--tight">
+      <div class="game-head">
+        <button class="back-btn" data-target="menu-scene">Back</button>
+        <h3>Maths Quiz</h3>
+      </div>
+      <p id="maths-question" class="question-text"></p>
+      <div id="maths-options" class="options-grid"></div>
+      <p id="maths-feedback" class="feedback"></p>
+      <button id="maths-next" class="action-btn">Next Question</button>
+    </section>
+
+    <section id="reaction-scene" class="scene game-scene ta-panel ta-panel--tight">
+      <div class="game-head">
+        <button class="back-btn" data-target="menu-scene">Back</button>
+        <h3>Tap Frenzy</h3>
+      </div>
+      <p class="hint-text">Tap start, then tap the big button as many times as you can in 5 seconds.</p>
+      <button id="reaction-start" class="action-btn">Start Round</button>
+      <button id="reaction-area" class="reaction-area" disabled>Tap!</button>
+      <p id="reaction-result" class="feedback"></p>
+    </section>
+
+    <section id="flag-scene" class="scene game-scene ta-panel ta-panel--tight">
+      <div class="game-head">
+        <button class="back-btn" data-target="menu-scene">Back</button>
+        <h3>Flag Quiz</h3>
+      </div>
+      <img id="flag-image" class="flag-image" src="" alt="Country flag">
+      <p id="flag-prompt" class="question-text">Which country is this?</p>
+      <div id="flag-options" class="options-grid"></div>
+      <p id="flag-feedback" class="feedback"></p>
+      <button id="flag-next" class="action-btn">Next Flag</button>
+    </section>
+
+    <section id="typing-scene" class="scene game-scene ta-panel ta-panel--tight">
+      <div class="game-head">
+        <button class="back-btn" data-target="menu-scene">Back</button>
+        <h3>Typing Game</h3>
+      </div>
+      <p id="typing-word" class="typing-word"></p>
+      <input id="typing-input" class="typing-input" type="text" placeholder="Type the word here">
+      <button id="typing-start" class="action-btn">New Word</button>
+      <p id="typing-feedback" class="feedback"></p>
+    </section>
+  </main>
+
+  <script src="../../js/ta-game-skip-intro.js"></script>
+  <script src="../../js/core/bridge-global.js"></script>
+  <script src="../../js/ta-game-celebration.js"></script>
+  <script src="../../js/ta-game-ui.js"></script>
+  <script src="../../js/ta-game-mascot.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,47 @@
+Apply this style and intro system to my browser game (HTML, CSS, JS only, no frameworks):
+
+Goal:
+- Use a black and yellow visual identity.
+- Add a cinematic intro splash that traces text.
+- Keep full touch + mouse support.
+- Keep code clean and easy to reuse.
+
+Requirements:
+1) Color palette (black + yellow accents)
+- Primary background: near-black gradients (e.g. #030303 to #101010)
+- Accent colors: warm yellow/gold (e.g. #FFE14F and #FFBF00)
+- Text: soft warm white/yellow (e.g. #FFF6CC, #FFE288)
+- Buttons and highlights should use yellow gradients with dark readable text.
+- Use subtle glow/shadow, but do not overdo it.
+
+2) Intro animation (before game UI appears)
+- Full-screen overlay intro.
+- Large center text should be traced using SVG stroke animation (draw-on effect), then lightly filled.
+- Main title traces first, subtitle traces second.
+- Add a motto below that types itself letter-by-letter:
+  "Innovation is key."
+- Show hint text: "Tap anywhere to skip".
+- Intro must be skippable with both touch and mouse using pointer events.
+- Auto-finish intro after animation sequence.
+- Fade overlay out and animate game container in (smooth reveal).
+
+3) Game UI transition
+- Game starts hidden (opacity/translate/scale).
+- After intro, reveal game card with a polished easing animation.
+- Preserve existing game logic and event handlers.
+
+4) Responsiveness & usability
+- Large touch-friendly buttons.
+- Layout centered and readable on desktop and iPad.
+- Avoid tiny text and cramped spacing.
+- Keep accessibility in mind (clear contrast and labels where practical).
+
+5) Technical constraints
+- No external libraries.
+- Works by opening index.html directly.
+- Organize code across index.html, style.css, script.js.
+- Use pointer events for cross-device interaction.
+- Keep comments brief and meaningful.
+
+Deliverables:
+- Updated index.html, style.css, and script.js with the black/yellow theme and intro animation integrated into the existing game flow.

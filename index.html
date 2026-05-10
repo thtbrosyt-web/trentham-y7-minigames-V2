@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="description" content="Year 7 minigame hub for Trentham Academy — play, earn XP and coins, badges, shop boosts, and backup your progress. Works on iPad and desktop.">
+  <meta name="theme-color" content="#030303">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="__GH_PAGES_ORIGIN__/">
+  <meta property="og:title" content="Trentham Academy Year 7 Minigames">
+  <meta property="og:description" content="Play minigames, earn XP and coins, unlock badges, use the shop, and back up your progress — tuned for iPad and desktop.">
+  <meta property="og:image" content="__GH_PAGES_ORIGIN__/favicon.svg">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Trentham Academy Year 7 Minigames">
+  <meta name="twitter:description" content="Play minigames, earn XP and coins, unlock badges, use the shop, and back up your progress.">
+  <meta name="twitter:image" content="__GH_PAGES_ORIGIN__/favicon.svg">
+  <title>Trentham Academy Fun Year 7 Minigames</title>
+  <link rel="canonical" href="__GH_PAGES_ORIGIN__/">
+  <link rel="icon" href="./favicon.svg" type="image/svg+xml">
+  <link rel="manifest" href="./site.webmanifest">
+  <link rel="stylesheet" href="./styles.css">
+  <link rel="stylesheet" href="./js/ta-game-ui.css">
+</head>
+<body>
+  <div id="bootSplash" class="boot-splash" aria-live="polite">
+    <div class="boot-splash-inner">
+      <p class="boot-logo">THTLabs <span class="boot-v2-badge" aria-hidden="true">V2</span></p>
+      <p class="boot-byline">By Matei · Hub version 2</p>
+      <div class="boot-bar-shell">
+        <div class="boot-bar" data-boot-bar></div>
+      </div>
+      <p class="boot-pct"><span data-boot-pct>0%</span></p>
+      <p class="boot-tip" data-boot-tip>Loading your hub…</p>
+    </div>
+  </div>
+
+  <main id="app" class="app hidden">
+    <header class="top-bar">
+      <div class="top-bar-lead">
+        <div class="site-kicker-row">
+          <p class="site-kicker">Year 7 · Game hub</p>
+          <span class="hub-v2-badge" title="Hub version 2">V2</span>
+        </div>
+        <h1>Trentham Academy Minigames</h1>
+        <p class="subtext top-bar-tagline">New hub polish, shop boosts, and backup codes — tuned for <strong>iPad</strong> and other devices. Use the tabs below to switch areas. Your progress stays on this device unless you use <strong>Backup &amp; restore</strong> in Settings.</p>
+      </div>
+      <div class="header-actions">
+        <button type="button" id="themeToggle" class="gold-btn theme-toggle" title="Switch light/dark appearance">Theme</button>
+        <div class="player-stats-grid" aria-label="Your profile">
+          <div class="player-stat-pill">
+            <span class="player-stat-label">Name</span>
+            <strong id="playerName" class="player-stat-value">—</strong>
+          </div>
+          <div class="player-stat-pill">
+            <span class="player-stat-label">Level</span>
+            <strong id="playerLevel" class="player-stat-value">0</strong>
+          </div>
+          <div class="player-stat-pill">
+            <span class="player-stat-label">Coins</span>
+            <strong id="playerCoins" class="player-stat-value">0</strong>
+          </div>
+          <p id="streakLine" class="player-streak subtext">Daily streak: 0 days</p>
+        </div>
+      </div>
+    </header>
+
+    <div class="hub-dashboard">
+      <div id="hubGuideChip" class="hub-guide-chip" aria-live="polite"></div>
+      <div id="statsStrip" class="stats-chips" aria-live="polite"></div>
+      <p id="boostLine" class="boost-line subtext hidden" aria-live="polite"></p>
+      <section class="xp-wrap xp-wrap-inline" aria-labelledby="xp-heading">
+        <h2 id="xp-heading" class="sr-only">XP progress toward next level</h2>
+        <div class="xp-meta">
+          <span class="xp-label">Next level</span>
+          <span id="xpText" class="xp-numbers">0 / 42</span>
+        </div>
+        <div class="xp-bar-shell">
+          <div id="xpBar" class="xp-bar"></div>
+        </div>
+      </section>
+    </div>
+
+    <nav class="hub-nav" aria-label="Hub sections">
+      <span class="hub-nav-title">Choose a section</span>
+      <div class="hub-nav-buttons">
+        <button type="button" class="hub-nav-btn" data-view="view-home" aria-current="page"><span class="hub-nav-icon" aria-hidden="true">🏠</span><span class="hub-nav-label">Home</span></button>
+        <button type="button" class="hub-nav-btn" data-view="view-games"><span class="hub-nav-icon" aria-hidden="true">🎮</span><span class="hub-nav-label">Games</span></button>
+        <button type="button" class="hub-nav-btn" data-view="view-achievements"><span class="hub-nav-icon" aria-hidden="true">🏅</span><span class="hub-nav-label">Badges</span></button>
+        <details class="hub-nav-dropdown" id="shopNavDropdown">
+          <summary id="shopNavSummary" class="hub-nav-btn hub-nav-dropdown-summary" aria-haspopup="menu" aria-expanded="false" aria-controls="shopNavMenu"><span class="hub-nav-icon" aria-hidden="true">🛒</span><span class="hub-nav-label">Shop</span> <span class="hub-nav-caret" aria-hidden="true">▾</span></summary>
+          <div id="shopNavMenu" class="hub-nav-submenu" role="menu" aria-label="Shop sections">
+            <button type="button" class="hub-nav-submenu-btn" role="menuitem" data-shop-tab="canteen">Canteen</button>
+            <button type="button" class="hub-nav-submenu-btn" role="menuitem" data-shop-tab="boost">Boosts</button>
+          </div>
+        </details>
+        <button type="button" class="hub-nav-btn" data-view="view-settings"><span class="hub-nav-icon" aria-hidden="true">⚙️</span><span class="hub-nav-label">Settings</span></button>
+        <button type="button" class="hub-nav-btn" data-view="view-rate"><span class="hub-nav-icon" aria-hidden="true">💬</span><span class="hub-nav-label">Feedback</span></button>
+      </div>
+    </nav>
+
+    <div id="hubViewPort" class="hub-viewport">
+      <section id="view-home" class="hub-section hub-panel view active">
+        <header class="section-header">
+          <h2 class="section-title">Home</h2>
+          <p class="section-lead">Quick snapshot of what you play and like. Pick another tab above for games, badges, or the shop.</p>
+        </header>
+        <div class="feature-grid">
+          <article class="feature-card">
+            <h3 class="feature-card-heading">Most played</h3>
+            <p id="mostPlayed" class="feature-card-body">No games played yet.</p>
+          </article>
+          <article class="feature-card">
+            <h3 class="feature-card-heading">Most liked</h3>
+            <p id="mostLiked" class="feature-card-body">No ratings yet.</p>
+          </article>
+        </div>
+        <p class="subtext section-footnote">Day-event hub: games unlock quickly as you level up. Finish the briefing popup once. Tap <strong>Codes</strong> for bonus coins/XP (different from <strong>Backup &amp; restore</strong>).</p>
+      </section>
+
+      <section id="view-games" class="hub-section hub-panel view" hidden>
+        <header class="section-header">
+          <h2 class="section-title">All games</h2>
+          <p class="section-lead">Press <strong>Play</strong> to open a game. <strong>Thumb up</strong> is a quick rating; the star saves this game to your favourites filter.</p>
+        </header>
+        <div class="games-toolbar">
+          <label class="search-field">
+            <span class="field-label">Search</span>
+            <span class="game-search-wrap">
+              <input id="gameSearch" type="search" placeholder="Type a game name…" class="game-search-input" autocomplete="off">
+              <button type="button" id="gameSearchClear" class="game-search-clear hidden" aria-label="Clear search">×</button>
+            </span>
+          </label>
+          <label class="fav-filter"><input id="favOnlyFilter" type="checkbox"> Show favourites only</label>
+        </div>
+        <div id="gamesGrid" class="games-grid"></div>
+      </section>
+
+      <section id="view-achievements" class="hub-section hub-panel view" hidden>
+        <header class="section-header">
+          <h2 class="section-title">Achievements</h2>
+          <p class="section-lead">Badges unlock as you play. Each one adds <strong>XP</strong> and <strong>coins</strong> — you’ll see a notice in the corner when you earn one.</p>
+        </header>
+        <div id="achievementsGrid" class="achievements-grid"></div>
+      </section>
+
+      <section id="view-customise" class="hub-section hub-panel view" hidden>
+        <header class="section-header">
+          <h2 id="shopSectionTitle" class="section-title">Shop · Canteen</h2>
+          <p id="shopSectionLead" class="section-lead">Snacks and boosts apply on your next game score. Wardrobe cosmetics are disabled for this day-event build.</p>
+        </header>
+        <div id="shopPanelCanteen" class="shop-panel shop-panel-single" data-shop-panel="canteen" hidden>
+          <article class="feature-card">
+            <h3 class="shop-subsection-title">Canteen</h3>
+            <p class="subtext shop-subsection-hint">Quick bites: small XP or coin bumps on your next score. Snacks apply on your <strong>next game score</strong> only.</p>
+            <div id="canteenItems" class="canteen-grid"></div>
+          </article>
+        </div>
+        <div id="shopPanelBoosts" class="shop-panel shop-panel-single" data-shop-panel="boost" hidden>
+          <article class="feature-card">
+            <h3 class="shop-subsection-title">Boosts</h3>
+            <p class="subtext shop-subsection-hint">Stronger one-shot effects. You can only queue <strong>one</strong> boost at a time — it applies on your <strong>next game score</strong>.</p>
+            <div id="boostItems" class="canteen-grid"></div>
+          </article>
+        </div>
+      </section>
+
+      <section id="view-settings" class="hub-section hub-panel view" hidden>
+        <header class="section-header">
+          <h2 class="section-title">Settings</h2>
+          <p class="section-lead">Theme and data live only in your browser — nothing is sent to a server except feedback you submit under <strong>Feedback</strong>.</p>
+        </header>
+
+        <article class="feature-card settings-prefs">
+          <h3 class="feature-card-heading">Preferences</h3>
+          <label class="settings-toggle">
+            <input type="checkbox" id="setSkipIntros"> Skip in-game intro screens (when supported)
+          </label>
+          <label class="settings-toggle">
+            <input type="checkbox" id="setSkipBoot"> Skip hub loading animation
+          </label>
+          <label class="settings-toggle">
+            <input type="checkbox" id="setReduceMotion"> Reduce motion (shorter splash, less celebration)
+          </label>
+          <label class="settings-toggle">
+            <input type="checkbox" id="setSoundEffects"> Sound effects (game start, level up, tips buddy, finish celebration — MP3s in assets/audio)
+          </label>
+          <p class="field-label">Accent colour</p>
+          <p class="subtext">Changes gold highlights (works in light and dark).</p>
+          <div class="accent-picker" role="group" aria-label="Accent colour">
+            <button type="button" class="accent-swatch accent-swatch--gold" data-accent="gold" title="Gold">Gold</button>
+            <button type="button" class="accent-swatch accent-swatch--ocean" data-accent="ocean" title="Ocean">Ocean</button>
+            <button type="button" class="accent-swatch accent-swatch--violet" data-accent="violet" title="Violet">Violet</button>
+            <button type="button" class="accent-swatch accent-swatch--emerald" data-accent="emerald" title="Emerald">Emerald</button>
+            <button type="button" class="accent-swatch accent-swatch--rose" data-accent="rose" title="Rose">Rose</button>
+          </div>
+        </article>
+
+        <div class="settings-actions">
+          <button type="button" id="settingsThemeBtn" class="gold-btn">Switch light/dark theme</button>
+        </div>
+
+        <article class="feature-card settings-backup">
+          <h3 class="feature-card-heading">Backup &amp; restore</h3>
+          <p class="subtext">Copy a <strong>save code</strong> to move your hub progress to another device or browser. Codes stay on your clipboard or paper — nothing is uploaded.</p>
+          <label class="modal-label"><span class="field-label">Your save code</span>
+            <textarea id="saveCodeExportArea" class="save-code-textarea" readonly rows="3" aria-readonly="true"></textarea>
+          </label>
+          <div class="settings-actions-row">
+            <button type="button" id="saveCodeRefreshBtn" class="gold-btn secondary-btn">Refresh code</button>
+            <button type="button" id="saveCodeCopyBtn" class="gold-btn">Copy save code</button>
+          </div>
+          <label class="modal-label"><span class="field-label">Paste a code to restore</span>
+            <textarea id="saveCodeImportArea" class="save-code-textarea" rows="4" placeholder="Paste your THTSAVE1_… code here"></textarea>
+          </label>
+          <p id="saveCodeStatus" class="subtext" role="status"></p>
+          <button type="button" id="saveCodeRestoreBtn" class="gold-btn">Restore from code</button>
+        </article>
+
+        <article id="devToolsPanel" class="feature-card dev-tools hidden">
+          <h3 class="feature-card-heading">Developer tools</h3>
+          <p class="subtext">Local-only. For testing.</p>
+          <p class="subtext">All games playable while dev mode is on.</p>
+          <details open>
+            <summary>Grants &amp; badges</summary>
+            <div class="dev-actions">
+              <button type="button" class="gold-btn" id="devAddCoins">+100 coins</button>
+              <button type="button" class="gold-btn" id="devAddXp">+50 XP</button>
+              <button type="button" class="gold-btn" id="devPumpAch">Re-check badges</button>
+              <button type="button" class="gold-btn" id="devFinishCelebration">Trigger finish celebration</button>
+            </div>
+            <p class="subtext">Finish celebration opens the confetti overlay only — no XP or coins.</p>
+          </details>
+          <details>
+            <summary>Boosts &amp; codes</summary>
+            <div class="dev-actions">
+              <button type="button" class="gold-btn" id="devClearBoost">Clear pending boost</button>
+              <button type="button" class="gold-btn" id="devPresetBoost">Queue sample boost (+15% XP)</button>
+              <p class="subtext dev-matrix-label">Quick queue (clear boost first if blocked):</p>
+              <div class="dev-actions dev-boost-matrix">
+                <button type="button" class="gold-btn" id="devBoostCoinsPct">+12% coins</button>
+                <button type="button" class="gold-btn" id="devBoostFlatXp">+10 flat XP</button>
+                <button type="button" class="gold-btn" id="devBoostMegamix">Megamix sample</button>
+                <button type="button" class="gold-btn" id="devBoostUltra">Ultra sample</button>
+              </div>
+              <label class="modal-label"><span class="field-label">Queue boost from shop item</span>
+                <select id="devConsumableSelect" class="dev-select"></select>
+              </label>
+              <button type="button" class="gold-btn" id="devQueueConsumable">Queue selected consumable (free)</button>
+              <label class="modal-label"><span class="field-label">Test redeem code</span>
+                <input type="text" id="devRedeemInput" class="game-search-input" maxlength="40" autocomplete="off" placeholder="CODE">
+              </label>
+              <button type="button" class="gold-btn" id="devRedeemApply">Apply redeem code</button>
+              <button type="button" class="gold-btn" id="devClearRedeemed">Clear redeemed-code history</button>
+            </div>
+          </details>
+          <details>
+            <summary>Progress presets</summary>
+            <div class="dev-actions">
+              <button type="button" class="gold-btn" id="devLevel5">Set level 5</button>
+              <button type="button" class="gold-btn" id="devLevel10">Set level 10</button>
+              <button type="button" class="gold-btn" id="devLevelMax">Set level 50</button>
+              <button type="button" class="gold-btn" id="devCoins500">Set coins 500</button>
+              <button type="button" class="gold-btn" id="devCoins5000">Set coins 5000</button>
+            </div>
+          </details>
+          <details>
+            <summary>Stats (danger)</summary>
+            <div class="dev-actions">
+              <button type="button" class="gold-btn dev-danger" id="devCoinsZero">Set coins to 0</button>
+              <button type="button" class="gold-btn dev-danger" id="devXpZero">Set XP to 0</button>
+            </div>
+          </details>
+          <details>
+            <summary>Save / debug</summary>
+            <div class="dev-actions">
+              <button type="button" class="gold-btn" id="devExportSave">Export save JSON</button>
+              <button type="button" class="gold-btn" id="devCopySaveCode">Copy student save code</button>
+              <button type="button" class="gold-btn" id="devDumpStorage">Dump ta_* keys to box</button>
+              <button type="button" class="gold-btn dev-danger" id="devRevokeSelf">Revoke dev unlock (this device)</button>
+              <button type="button" class="gold-btn" id="devCopyDebug">Copy debug snapshot</button>
+              <label class="modal-label"><span class="field-label">Import save JSON</span><textarea id="devImportArea" rows="3" placeholder="Paste JSON"></textarea></label>
+              <button type="button" class="gold-btn" id="devImportSave">Import</button>
+              <label class="modal-label"><span class="field-label">Debug snapshot</span><textarea id="devDebugOut" rows="3" readonly></textarea></label>
+            </div>
+          </details>
+        </article>
+
+        <article class="feature-card settings-danger-zone">
+          <h3 class="feature-card-heading danger-heading">Reset all progress</h3>
+          <p class="subtext">This removes your name, XP, coins, pending shop boosts, badges, favourites, streak, scores, reviews, redeem-code history, and other hub data on <strong>this device</strong>. Cannot be undone.</p>
+          <label class="reset-confirm-label">Type your <strong>display name</strong> exactly to confirm</label>
+          <input id="resetConfirmInput" type="text" class="game-search-input" autocomplete="off" placeholder="Your hub name">
+          <button type="button" id="resetAllBtn" class="gold-btn danger-btn">Delete all saved data</button>
+          <p id="resetStatus" class="subtext" role="status"></p>
+        </article>
+      </section>
+
+      <footer id="view-rate" class="review-footer hub-section hub-panel" hidden>
+        <header class="section-header section-header-tight">
+          <h2 class="section-title">Feedback</h2>
+          <p class="section-lead">Tap the left or right half of each star for half or full stars. Optional keyboard: focus the stars and use arrow keys. Your message is sent to the project owner; a copy is kept here too.</p>
+        </header>
+        <div class="review-fields">
+          <fieldset class="review-fieldset">
+            <legend class="field-label">Your rating</legend>
+            <div id="starRow" class="star-row" role="group" aria-label="Project rating"></div>
+          </fieldset>
+          <label class="review-label">
+            <span class="field-label">Message (optional but helpful)</span>
+            <textarea id="reviewText" placeholder="What did you enjoy? What could be better?" rows="4"></textarea>
+          </label>
+          <button id="submitReviewBtn" type="button" class="gold-btn review-submit">Send feedback</button>
+          <p class="subtext review-privacy">Uses Formspree to email your message. You can ignore this if you prefer not to send anything.</p>
+          <p id="reviewStatus" class="review-status subtext" role="status"></p>
+        </div>
+      </footer>
+    </div>
+
+    <button type="button" class="secret-codes-btn" id="openCodesBtn" title="Redeem a code">Codes</button>
+  </main>
+
+  <footer class="site-footer">
+    Report any bugs to <a href="mailto:ionim@clt.trentham.coop">ionim@clt.trentham.coop</a>
+  </footer>
+
+  <div id="levelUpBurst" class="level-up-burst hidden" aria-hidden="true"></div>
+
+  <div id="nameModal" class="modal hidden" role="dialog" aria-modal="true">
+    <div class="modal-card">
+      <h2>Welcome</h2>
+      <p class="subtext">Choose a name and device so we can tune the hub for you. Progress stays on this device.</p>
+      <label class="modal-label">
+        <span class="field-label">Display name</span>
+        <input id="nameInput" type="text" maxlength="24" placeholder="Your name" autocomplete="username">
+      </label>
+      <fieldset class="device-picker-fieldset">
+        <legend class="field-label">What are you playing on?</legend>
+        <div class="device-segments" role="radiogroup" aria-label="Device type">
+          <label class="device-seg"><input type="radio" name="playDevice" value="ipad"> iPad / tablet</label>
+          <label class="device-seg"><input type="radio" name="playDevice" value="phone"> Phone</label>
+          <label class="device-seg"><input type="radio" name="playDevice" value="laptop"> Laptop / PC</label>
+          <label class="device-seg"><input type="radio" name="playDevice" value="other"> Other</label>
+        </div>
+      </fieldset>
+      <button id="saveNameBtn" type="button" class="gold-btn">Continue</button>
+    </div>
+  </div>
+
+  <div id="briefingModal" class="modal hidden" role="dialog" aria-modal="true" aria-labelledby="briefingHeading">
+    <div class="modal-card">
+      <h2 id="briefingHeading">Quick briefing</h2>
+      <p class="subtext">Pick who your corner tips buddy looks like in games (uniform or PE kit swaps automatically in sporty titles).</p>
+      <fieldset class="device-picker-fieldset">
+        <legend class="field-label">Buddy style</legend>
+        <div class="device-segments" role="radiogroup" aria-label="Briefing character">
+          <label class="device-seg"><input type="radio" name="briefingGender" value="boy" checked> Boy uniform</label>
+          <label class="device-seg"><input type="radio" name="briefingGender" value="girl"> Girl uniform</label>
+        </div>
+      </fieldset>
+      <button id="briefingSaveBtn" type="button" class="gold-btn">Let&apos;s go</button>
+    </div>
+  </div>
+
+  <div id="restoreSaveModal" class="modal hidden" role="dialog" aria-modal="true" aria-labelledby="restoreSaveHeading">
+    <div class="modal-card">
+      <h2 id="restoreSaveHeading">Restore backup?</h2>
+      <p class="subtext">This replaces your hub progress on <strong>this device</strong> with the backup. Current data for those saves will be overwritten.</p>
+      <div class="modal-actions-row">
+        <button type="button" id="restoreSaveCancel" class="gold-btn secondary-btn">Cancel</button>
+        <button type="button" id="restoreSaveConfirm" class="gold-btn danger-btn">Replace progress</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="devPassModal" class="modal hidden" role="dialog" aria-modal="true">
+    <div class="modal-card">
+      <h2>Developer access</h2>
+      <p class="subtext">Enter the developer password to continue.</p>
+      <label class="modal-label">
+        <span class="field-label">Password</span>
+        <input id="devPassInput" type="password" maxlength="64" autocomplete="off">
+      </label>
+      <p id="devPassErr" class="subtext danger-text" role="status"></p>
+      <button id="devPassSubmit" type="button" class="gold-btn">Unlock</button>
+      <button id="devPassCancel" type="button" class="gold-btn secondary-btn">Cancel</button>
+    </div>
+  </div>
+
+  <div id="devNameModal" class="modal hidden" role="dialog" aria-modal="true">
+    <div class="modal-card">
+      <h2>Your display name</h2>
+      <p class="subtext">Dev mode unlocked. Pick the name shown in the hub.</p>
+      <label class="modal-label">
+        <span class="field-label">Display name</span>
+        <input id="devNameInput" type="text" maxlength="24" placeholder="Dev" autocomplete="username">
+      </label>
+      <button id="devNameSave" type="button" class="gold-btn">Continue</button>
+    </div>
+  </div>
+
+  <div id="redeemModal" class="modal hidden" role="dialog" aria-modal="true">
+    <div class="modal-card">
+      <h2>Redeem code</h2>
+      <p class="subtext">Type a code shared by your teacher or the project owner. Many codes work <strong>once per device</strong>; some can be used more than once (see labels in <code>redeem-codes.json</code>). Rewards are extras only — use <strong>Settings → Backup</strong> to move full progress.</p>
+      <label class="modal-label">
+        <span class="field-label">Code</span>
+        <input id="redeemInput" type="text" maxlength="40" autocomplete="off">
+      </label>
+      <p id="redeemStatus" class="subtext" role="status"></p>
+      <button id="redeemSubmit" type="button" class="gold-btn">Redeem</button>
+      <button id="redeemClose" type="button" class="gold-btn secondary-btn">Close</button>
+    </div>
+  </div>
+
+  <script src="./js/ta-game-celebration.js"></script>
+  <script type="module" src="./js/app.js"></script>
+</body>
+</html>

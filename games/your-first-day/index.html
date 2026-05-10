@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="ta-game-help" content="Read scenes and tap choices — build confidence through the story.">
+  <meta name="ta-hub-game" content="Your First Day">
+  <link rel="stylesheet" href="../../js/ta-game-mascot.css">
+  <title>Your First Day</title>
+  <link rel="stylesheet" href="../../styles.css">
+  <link rel="stylesheet" href="../../js/ta-game-ui.css">
+  <link rel="stylesheet" href="styles.css">
+  <script src="../../js/ta-game-hub-prefs.js"></script>
+</head>
+<body class="ta-game-page">
+  <div id="intro-screen" class="screen active">
+    <div class="intro-inner">
+      <svg class="logo-svg" viewBox="0 0 1000 320" aria-hidden="true">
+        <text id="trace-main" x="50%" y="120" text-anchor="middle">THTLabs</text>
+        <text id="trace-sub" x="50%" y="205" text-anchor="middle">By Matei</text>
+      </svg>
+      <p id="intro-quote" class="intro-quote"></p>
+      <button id="skip-intro-button" class="btn btn-secondary">Skip Intro</button>
+      <button id="start-button" class="btn btn-start" hidden>Start Your First Day</button>
+    </div>
+  </div>
+
+  <main id="game-screen" class="screen">
+    <section class="game-card ta-panel ta-panel--tight">
+      <a href="../../index.html?resume=1" class="gold-btn back-link hub-back-link">Back to Hub</a>
+      <p class="ta-subtitle">Branching story — choices shift your confidence meter.</p>
+      <header class="hud">
+        <div class="name-box">
+          <span class="label">Character</span>
+          <h2 id="character-name">Narrator</h2>
+        </div>
+        <div class="confidence-box">
+          <span class="label">Confidence</span>
+          <div class="meter-track">
+            <div id="confidence-meter" class="meter-fill"></div>
+          </div>
+          <p id="confidence-value">50</p>
+        </div>
+      </header>
+
+      <article id="scene-text" class="text-box"></article>
+
+      <section id="choices" class="choices"></section>
+
+      <footer class="controls">
+        <button id="restart-button" class="btn btn-secondary">Restart</button>
+      </footer>
+      <section>
+        <h3>Your best</h3>
+        <p id="platformLeaderboard" class="personal-best-line"></p>
+      </section>
+    </section>
+  </main>
+
+  <script src="../../js/ta-game-skip-intro.js"></script>
+  <script src="../../js/core/bridge-global.js"></script>
+  <script src="../../js/ta-game-celebration.js"></script>
+  <script src="../../js/ta-game-ui.js"></script>
+  <script src="../../js/ta-game-mascot.js"></script>
+  <script src="scenes.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,43 @@
+.game-shell {
+  width: min(560px, 95%);
+  margin: 12px auto;
+  text-align: center;
+}
+.back-link { text-decoration: none; display: inline-block; margin-bottom: 8px; }
+canvas {
+  display: block;
+  width: min(100%, 400px);
+  height: auto;
+  margin: 0 auto;
+  background: #0d0d0d;
+  border: 2px solid #44390f;
+  border-radius: 12px;
+  touch-action: none;
+}
+.touch-controls {
+  margin-top: 12px;
+}
+
+.touch-controls .gold-btn {
+  min-height: 52px;
+  touch-action: manipulation;
+  transition: transform 0.12s ease, box-shadow 0.15s ease;
+}
+
+.touch-controls .gold-btn:active {
+  transform: scale(0.98);
+}
+
+.back-link.hub-back-link {
+  touch-action: manipulation;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .touch-controls .gold-btn {
+    transition: none;
+  }
+
+  .touch-controls .gold-btn:active {
+    transform: none;
+  }
+}

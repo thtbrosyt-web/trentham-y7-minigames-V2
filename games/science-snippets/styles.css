@@ -1,0 +1,40 @@
+.game-shell {
+  width: min(680px, 94%);
+  margin: 14px auto;
+  text-align: center;
+}
+.back-link { text-decoration: none; display: inline-block; margin-bottom: 8px; }
+.qtext { font-size: 1.05rem; text-align: left; margin: 12px 0; line-height: 1.45; color: #eeead0; }
+.answers {
+  display: grid;
+  gap: 8px;
+  margin: 12px 0;
+}
+
+button,
+.gold-btn {
+  touch-action: manipulation;
+}
+
+.game-shell .gold-btn:not(.back-link),
+.answers button {
+  min-height: 48px;
+  transition: transform 0.12s ease, box-shadow 0.15s ease;
+}
+
+.game-shell .gold-btn:not(.back-link):active,
+.answers button:active {
+  transform: scale(0.98);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .game-shell .gold-btn:not(.back-link),
+  .answers button {
+    transition: none;
+  }
+
+  .game-shell .gold-btn:not(.back-link):active,
+  .answers button:active {
+    transform: none;
+  }
+}

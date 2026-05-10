@@ -1,0 +1,54 @@
+# GitHub Pages — static deploy
+#
+# One-time repo setup (otherwise workflows run but nothing is published):
+#   Settings → Pages → Build and deployment → Source: GitHub Actions
+#
+# This workflow assumes a PROJECT site URL:
+#   https://<owner-lowercase>.github.io/<repository-name>/
+# For a USER site (repository named <user>.github.io), the inject step uses the root URL.
+
+name: Deploy GitHub Pages
+
+on:
+  push:
+    branches: ["main"]
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Inject public site URL into index.html (OG / canonical)
+        shell: bash
+        env:
+          REPO_FULL: ${{ github.repository }}
+          OWNER: ${{ github.repository_owner }}
+        run: |
+          OWNER_LC=$(echo "$OWNER" | tr '[:upper:]' '[:lower:]')
+          REPO="${REPO_FULL#*/}"
+          if [ "$REPO" = "${OWNER_LC}.github.io" ]; then
+            ORIGIN="https://${OWNER_LC}.github.io"
+          else
+            ORIGIN="https://${OWNER_LC}.github.io/${REPO}"
+          fi
+          sed -i "s|__GH_PAGES_ORIGIN__|${ORIGIN}|g" index.html
+
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: "."
+      - id: deployment
+        uses: actions/deploy-pages@v4

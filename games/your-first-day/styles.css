@@ -1,0 +1,278 @@
+:root {
+  --bg-dark-1: #030303;
+  --bg-dark-2: #101010;
+  --accent-1: #ffe14f;
+  --accent-2: #ffbf00;
+  --text-main: #fff6cc;
+  --text-soft: #ffe288;
+  --button-text: #121212;
+  --shadow-glow: 0 0 16px rgba(255, 225, 79, 0.22);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: "Trebuchet MS", "Segoe UI", sans-serif;
+  background: radial-gradient(circle at top, #151515 0%, var(--bg-dark-1) 45%, #000 100%);
+  color: var(--text-main);
+}
+
+.screen {
+  display: none;
+  min-height: 100vh;
+}
+
+.screen.active {
+  display: grid;
+  place-items: center;
+}
+
+#intro-screen {
+  background: linear-gradient(165deg, #020202 0%, #0c0c0c 60%, #141414 100%);
+  padding: 1.2rem;
+}
+
+.intro-inner {
+  width: min(900px, 96vw);
+  text-align: center;
+}
+
+.logo-svg {
+  width: 100%;
+  max-width: 760px;
+  height: auto;
+}
+
+#trace-main {
+  font-size: 112px;
+  font-weight: 900;
+  fill: transparent;
+  stroke: var(--accent-1);
+  stroke-width: 2.5;
+  stroke-dasharray: 1900;
+  stroke-dashoffset: 1900;
+  letter-spacing: 4px;
+  filter: drop-shadow(0 0 8px rgba(255, 225, 79, 0.32));
+}
+
+#trace-sub {
+  font-size: 44px;
+  font-weight: 600;
+  fill: transparent;
+  stroke: #fff;
+  stroke-width: 1.6;
+  stroke-dasharray: 900;
+  stroke-dashoffset: 900;
+  letter-spacing: 2px;
+}
+
+.trace-main #trace-main {
+  animation: draw-main 2.1s ease forwards;
+}
+
+.trace-sub #trace-sub {
+  animation: draw-sub 1.5s ease forwards;
+}
+
+.intro-quote {
+  min-height: 2rem;
+  margin: 0.5rem auto 1.4rem;
+  color: var(--text-soft);
+  font-size: 0.95rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.btn {
+  border: none;
+  border-radius: 14px;
+  padding: 1rem 1.2rem;
+  cursor: pointer;
+  font-weight: 800;
+  transition: transform 120ms ease, box-shadow 120ms ease, filter 120ms ease;
+}
+
+.btn:hover {
+  transform: translateY(-1px);
+  filter: brightness(1.04);
+}
+
+.btn:active {
+  transform: translateY(1px);
+}
+
+.btn-start,
+.choice-btn {
+  background: linear-gradient(180deg, var(--accent-1), var(--accent-2));
+  color: var(--button-text);
+  box-shadow: var(--shadow-glow);
+}
+
+#game-screen {
+  padding: 1.25rem;
+}
+
+.game-card {
+  width: min(980px, 100%);
+  background: linear-gradient(180deg, rgba(16, 16, 16, 0.96), rgba(9, 9, 9, 0.98));
+  border: 1px solid rgba(255, 225, 79, 0.22);
+  border-radius: 22px;
+  padding: 1.2rem;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5);
+}
+
+.hud {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 0.8rem;
+}
+
+.label {
+  color: #ffdf75;
+  text-transform: uppercase;
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+}
+
+#character-name {
+  margin: 0.2rem 0 0;
+  color: #fff0a8;
+  font-size: 1.35rem;
+}
+
+.confidence-box {
+  min-width: 220px;
+}
+
+.meter-track {
+  width: 100%;
+  height: 14px;
+  background: #1f1f1f;
+  border-radius: 999px;
+  overflow: hidden;
+  border: 1px solid rgba(255, 225, 79, 0.3);
+  margin-top: 0.35rem;
+}
+
+.meter-fill {
+  height: 100%;
+  width: 50%;
+  background: linear-gradient(90deg, #ffd84d, #ffbf00);
+  transition: width 220ms ease;
+}
+
+#confidence-value {
+  margin: 0.35rem 0 0;
+  font-weight: 700;
+  color: var(--text-soft);
+}
+
+.text-box {
+  margin-top: 1rem;
+  min-height: 170px;
+  padding: 1rem;
+  border-radius: 16px;
+  border: 1px solid rgba(255, 225, 79, 0.28);
+  background: rgba(0, 0, 0, 0.34);
+  color: var(--text-main);
+  font-size: 1.08rem;
+  line-height: 1.6;
+}
+
+.choices {
+  margin-top: 1rem;
+  display: grid;
+  gap: 0.7rem;
+}
+
+.choice-btn {
+  width: 100%;
+  text-align: left;
+  font-size: 1.02rem;
+  padding: 1rem;
+  border-radius: 12px;
+  min-height: 48px;
+  touch-action: manipulation;
+}
+
+.controls {
+  margin-top: 1rem;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.btn-secondary {
+  background: #252525;
+  color: var(--text-soft);
+  border: 1px solid rgba(255, 225, 79, 0.34);
+}
+
+@keyframes draw-main {
+  to {
+    stroke-dashoffset: 0;
+    fill: rgba(255, 225, 79, 0.08);
+  }
+}
+
+@keyframes draw-sub {
+  to {
+    stroke-dashoffset: 0;
+    fill: rgba(255, 255, 255, 0.06);
+  }
+}
+
+@media (max-width: 700px) {
+  #trace-main {
+    font-size: 76px;
+  }
+
+  #trace-sub {
+    font-size: 31px;
+  }
+
+  .text-box {
+    font-size: 1rem;
+    min-height: 160px;
+  }
+
+  .choice-btn {
+    font-size: 0.97rem;
+  }
+}
+
+.choice-btn,
+.btn,
+button[type="button"],
+.gold-btn {
+  touch-action: manipulation;
+  min-height: 48px;
+}
+
+.choice-btn {
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.choice-btn:active {
+  transform: scale(0.98);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .trace-main #trace-main,
+  .trace-sub #trace-sub {
+    animation: none !important;
+    stroke-dashoffset: 0 !important;
+  }
+
+  .choice-btn {
+    transition: none;
+  }
+
+  .choice-btn:active {
+    transform: none;
+  }
+}

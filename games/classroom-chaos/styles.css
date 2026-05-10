@@ -1,0 +1,49 @@
+.game-shell {
+  width: min(760px, 96%);
+  margin: 10px auto;
+  text-align: center;
+}
+.back-link { text-decoration: none; display: inline-block; margin-bottom: 8px; }
+.classroom {
+  margin-top: 10px;
+  height: 520px;
+  border-radius: 14px;
+  border: 2px solid #4f4216;
+  background: linear-gradient(180deg, #3a3012, #1f1f1f 35%, #101010);
+  position: relative;
+  overflow: hidden;
+}
+.problem {
+  position: absolute;
+  width: 72px;
+  height: 72px;
+  border-radius: 14px;
+  border: 2px solid #ffe14f;
+  background: #1a1a1a;
+  display: grid;
+  place-items: center;
+  font-size: 1.7rem;
+  cursor: pointer;
+  touch-action: manipulation;
+  transition: transform 0.1s ease, box-shadow 0.15s ease;
+}
+
+.problem:active {
+  transform: scale(0.96);
+}
+
+.gold-btn,
+button {
+  touch-action: manipulation;
+  min-height: 48px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .problem {
+    transition: none;
+  }
+
+  .problem:active {
+    transform: none;
+  }
+}

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="ta-game-help" content="Wait for the green bell each round, then tap fast for bonus points. No early taps.">
+  <meta name="ta-hub-game" content="Bell Break">
+  <link rel="stylesheet" href="../../js/ta-game-mascot.css">
+  <title>Bell Break</title>
+  <link rel="stylesheet" href="../../styles.css">
+  <link rel="stylesheet" href="../../js/ta-game-ui.css">
+  <link rel="stylesheet" href="./styles.css">
+  <script src="../../js/ta-game-hub-prefs.js"></script>
+</head>
+<body class="ta-game-page">
+  <main class="game-shell">
+    <a href="../../index.html?resume=1" class="gold-btn back-link">Back to Hub</a>
+    <h1>Bell Break</h1>
+
+    <section id="introScreen" class="bell-intro ta-panel">
+      <p class="bell-intro-lead">Break time! The bell is about to ring—react at just the right moment.</p>
+      <h2>How to play</h2>
+      <ul class="bell-intro-list">
+        <li>Press <strong>Start game</strong> when you are ready.</li>
+        <li>Wait until the button turns <strong>green</strong> (the “bell”)—do not tap early.</li>
+        <li>Complete <strong>8 rounds</strong> for a final score. Tap quickly after green for a speed bonus!</li>
+      </ul>
+      <button id="letsGoBtn" type="button" class="gold-btn">Let’s go</button>
+    </section>
+
+    <div id="gameArea" class="bell-game-area hidden">
+      <p id="hud" class="hud ta-hud-bar">Round 0 / 8 &middot; Score: 0</p>
+      <p id="hint" class="hint">Press <strong>Start game</strong> to begin.</p>
+      <button id="actionBtn" type="button" class="action-btn gold-btn" disabled>Press Start</button>
+      <button id="startBtn" type="button" class="gold-btn">Start game</button>
+      <p id="personalBest" class="personal-best-line"></p>
+      <button type="button" id="showIntroAgain" class="gold-btn ghost-btn hidden">How to play again</button>
+    </div>
+  </main>
+  <script src="../../js/ta-game-skip-intro.js"></script>
+  <script src="../../js/core/bridge-global.js"></script>
+  <script src="../../js/ta-game-celebration.js"></script>
+  <script src="../../js/ta-game-ui.js"></script>
+  <script src="../../js/ta-game-mascot.js"></script>
+  <script src="./script.js"></script>
+</body>
+</html>

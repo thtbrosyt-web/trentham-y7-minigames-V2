@@ -1,0 +1,92 @@
+[
+  {
+    "code": "THTWELCOME",
+    "coins": 15,
+    "xp": 10,
+    "oncePerDevice": true,
+    "message": "Welcome bonus applied!"
+  },
+  {
+    "code": "YEAR7FUN",
+    "coins": 25,
+    "xp": 12,
+    "oncePerDevice": true,
+    "message": "Nice — a few extra coins."
+  },
+  {
+    "code": "BADGEHUNT",
+    "xp": 24,
+    "oncePerDevice": true,
+    "message": "XP boost for explorers."
+  },
+  {
+    "code": "STREAKSNACK",
+    "coins": 12,
+    "oncePerDevice": false,
+    "message": "Snack money — can be used more than once."
+  },
+  {
+    "code": "STUDYMODE",
+    "coins": 18,
+    "xp": 18,
+    "oncePerDevice": true,
+    "message": "Revision boost — keep up the good work!"
+  },
+  {
+    "code": "GOLDSTAR7",
+    "coins": 35,
+    "xp": 20,
+    "oncePerDevice": true,
+    "message": "Star of the week stash."
+  },
+  {
+    "code": "BRAINFOOD",
+    "xp": 14,
+    "oncePerDevice": false,
+    "message": "Extra XP — redeem again anytime."
+  },
+  {
+    "code": "LUNCHMONEY",
+    "coins": 10,
+    "oncePerDevice": false,
+    "message": "Small top-up for the canteen."
+  },
+  {
+    "code": "THTCREW",
+    "coins": 22,
+    "xp": 15,
+    "oncePerDevice": true,
+    "message": "Team THT bonus."
+  },
+  {
+    "code": "WEEKENDWIN",
+    "xp": 45,
+    "oncePerDevice": true,
+    "message": "Weekend warrior XP."
+  },
+  {
+    "code": "GEOGENIUS",
+    "coins": 28,
+    "xp": 18,
+    "oncePerDevice": true,
+    "message": "Capital cities club."
+  },
+  {
+    "code": "BONUSROOM",
+    "unlockGames": ["Bonus Class"],
+    "oncePerDevice": true,
+    "message": "Bonus Class flagged on your profile."
+  },
+  {
+    "code": "EARLYGEO",
+    "unlockGames": ["Geography Snap"],
+    "oncePerDevice": true,
+    "message": "Geography Snap flagged for early access tracking."
+  },
+  {
+    "code": "THTEVERYTHING",
+    "grantEverything": true,
+    "oncePerDevice": true,
+    "message": "Teacher mega-code: all badges, max coins & XP, games flagged."
+  }
+]

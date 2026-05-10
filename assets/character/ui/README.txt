@@ -1,0 +1,4 @@
+- icon_lock.png
+- icon_coin.png
+- icon_xp.png
+- icon_star.png

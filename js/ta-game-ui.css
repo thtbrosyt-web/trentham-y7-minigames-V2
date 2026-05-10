@@ -1,0 +1,426 @@
+/**
+ * Shared polish for hub-linked minigames (load after ../../styles.css).
+ * Games opt in by adding classnames to HTML — local CSS stays authoritative.
+ */
+
+:root {
+  --ta-ui-gold-a: #ffe14f;
+  --ta-ui-gold-b: #ffbf00;
+  --ta-ui-text: #fff6cc;
+  --ta-ui-text-soft: #ddcf96;
+  --ta-ui-panel: rgba(23, 23, 23, 0.94);
+  --ta-ui-panel-border: rgba(255, 225, 79, 0.28);
+  --ta-ui-radius: 14px;
+  --ta-ui-shadow: 0 10px 28px rgba(0, 0, 0, 0.38);
+  --ta-ui-ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --ta-ui-duration: 0.2s;
+}
+
+.ta-game-page {
+  -webkit-font-smoothing: antialiased;
+  padding-left: max(12px, env(safe-area-inset-left, 0px));
+  padding-right: max(12px, env(safe-area-inset-right, 0px));
+}
+
+.ta-game-page main,
+.ta-game-page .game-shell {
+  padding-bottom: max(12px, env(safe-area-inset-bottom, 0px));
+}
+
+.ta-game-page .gold-btn,
+.ta-game-page .play-btn,
+.ta-game-page .action-btn,
+.ta-game-page .back-btn,
+.ta-game-page .hub-back-link {
+  transition:
+    transform var(--ta-ui-duration) var(--ta-ui-ease-out),
+    box-shadow var(--ta-ui-duration) var(--ta-ui-ease-out),
+    filter var(--ta-ui-duration) var(--ta-ui-ease-out);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ta-game-page .gold-btn,
+  .ta-game-page .play-btn,
+  .ta-game-page .action-btn,
+  .ta-game-page .back-btn,
+  .ta-game-page .hub-back-link {
+    transition: none;
+  }
+}
+
+.ta-game-page .gold-btn:active:not(:disabled),
+.ta-game-page .action-btn:active:not(:disabled) {
+  transform: scale(0.98);
+}
+
+.ta-game-panel-soft {
+  border-radius: var(--ta-ui-radius);
+  background: var(--ta-ui-panel);
+  border: 1px solid var(--ta-ui-panel-border);
+  box-shadow: var(--ta-ui-shadow);
+  padding: 14px 16px;
+}
+
+.ta-option-grid {
+  display: grid;
+  gap: 10px;
+  margin-block: 12px;
+}
+
+.ta-option-grid button {
+  touch-action: manipulation;
+  min-height: 48px;
+}
+
+html[data-theme="light"] .ta-game-panel-soft {
+  background: rgba(255, 253, 246, 0.96);
+  border-color: rgba(198, 188, 164, 0.85);
+}
+
+.ta-hud-bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 14px;
+  margin: 10px 0 14px;
+  padding: 10px 14px;
+  border-radius: var(--ta-ui-radius);
+  background: var(--ta-ui-panel);
+  border: 1px solid var(--ta-ui-panel-border);
+  box-shadow: var(--ta-ui-shadow);
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--ta-ui-text);
+  line-height: 1.35;
+}
+
+.ta-subtitle {
+  margin: -6px 0 14px;
+  font-size: 0.88rem;
+  color: var(--ta-ui-text-soft);
+  line-height: 1.4;
+}
+
+.ta-panel {
+  box-sizing: border-box;
+  margin: 12px 0;
+  padding: 14px 16px;
+  border-radius: var(--ta-ui-radius);
+  background: var(--ta-ui-panel);
+  border: 1px solid var(--ta-ui-panel-border);
+  box-shadow: var(--ta-ui-shadow);
+  color: var(--ta-ui-text);
+  max-width: 520px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.ta-panel--tight {
+  padding: 10px 12px;
+}
+
+.ta-touch-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
+  margin: 12px 0;
+}
+
+.ta-touch-row .gold-btn {
+  flex: 1 1 120px;
+  min-height: 48px;
+  touch-action: manipulation;
+}
+
+button:focus-visible,
+.gold-btn:focus-visible,
+a:focus-visible {
+  outline: 2px solid var(--ta-ui-gold-a);
+  outline-offset: 2px;
+}
+
+/* Help overlay (? — driven by ta-game-ui.js) */
+.ta-help-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 10002;
+  background: rgba(0, 0, 0, 0.55);
+  display: grid;
+  place-items: center;
+  padding: 16px;
+}
+
+.ta-help-backdrop.ta-help-hidden {
+  display: none !important;
+}
+
+.ta-help-modal {
+  max-width: 380px;
+  width: 100%;
+  padding: 16px 18px;
+  border-radius: var(--ta-ui-radius);
+  border: 1px solid var(--ta-ui-panel-border);
+  background: linear-gradient(165deg, #1e1e16, #121210);
+  color: var(--ta-ui-text);
+  box-shadow: var(--ta-ui-shadow);
+}
+
+.ta-help-modal h2 {
+  margin: 0 0 10px;
+  font-size: 1.05rem;
+  color: var(--ta-ui-gold-a);
+}
+
+.ta-help-modal p {
+  margin: 0 0 10px;
+  font-size: 0.9rem;
+  line-height: 1.45;
+  color: var(--ta-ui-text-soft);
+}
+
+.ta-help-close {
+  margin-top: 12px;
+  width: 100%;
+  min-height: 44px;
+}
+
+.ta-help-trigger {
+  position: fixed;
+  z-index: 9999;
+  top: max(8px, env(safe-area-inset-top, 0px));
+  right: max(8px, env(safe-area-inset-right, 0px));
+  left: auto;
+  width: 44px;
+  height: 44px;
+  border-radius: 999px;
+  border: 2px solid var(--ta-ui-panel-border);
+  background: rgba(24, 22, 14, 0.92);
+  color: var(--ta-ui-gold-a);
+  font-weight: 800;
+  font-size: 1.1rem;
+  cursor: pointer;
+  touch-action: manipulation;
+  box-shadow: var(--ta-ui-shadow);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ta-ui-pb-flash {
+    animation: none !important;
+  }
+}
+
+/* PB celebration — toggled on body briefly by bridge-global */
+.ta-ui-pb-flash {
+  animation: taUiPbPulse 0.85s ease-out 1;
+}
+
+@keyframes taUiPbPulse {
+  0% {
+    box-shadow: inset 0 0 0 0 rgba(255, 225, 79, 0);
+  }
+  35% {
+    box-shadow: inset 0 0 80px 12px rgba(255, 225, 79, 0.28);
+  }
+  100% {
+    box-shadow: inset 0 0 0 0 rgba(255, 225, 79, 0);
+  }
+}
+
+/* ----- Game completion celebration (ta-game-celebration.js, after submitScore) ----- */
+.ta-celeb-root {
+  position: fixed;
+  inset: 0;
+  z-index: 10090;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: max(12px, env(safe-area-inset-top, 0px)) max(12px, env(safe-area-inset-right, 0px))
+    max(12px, env(safe-area-inset-bottom, 0px)) max(12px, env(safe-area-inset-left, 0px));
+  pointer-events: none;
+}
+
+.ta-celeb-root.ta-celeb-hidden {
+  display: none !important;
+}
+
+.ta-celeb-root.ta-celeb-open {
+  pointer-events: auto;
+}
+
+.ta-celeb-backdrop {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at 50% 30%, rgba(40, 35, 18, 0.55), rgba(5, 5, 8, 0.88));
+  backdrop-filter: blur(3px);
+}
+
+.ta-celeb-confetti {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.ta-celeb-fireworks {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.ta-celeb-burst {
+  position: absolute;
+  left: var(--x);
+  top: var(--y);
+  width: 10px;
+  height: 10px;
+  margin-left: -5px;
+  margin-top: -5px;
+  border-radius: 50%;
+  background: radial-gradient(circle, #fffef2 0%, #ffe14f 35%, rgba(255, 140, 60, 0.85) 55%, transparent 72%);
+  box-shadow:
+    0 0 24px 10px rgba(255, 215, 90, 0.65),
+    16px -10px 0 -2px rgba(255, 120, 200, 0.55),
+    -14px 12px 0 -2px rgba(120, 220, 255, 0.5),
+    10px 18px 0 -3px rgba(180, 255, 140, 0.45);
+  animation: taCelebBurst 1.35s ease-out forwards;
+  opacity: 0;
+}
+
+@keyframes taCelebBurst {
+  0% {
+    transform: scale(0);
+    opacity: 0;
+  }
+  12% {
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 0;
+  }
+}
+
+.ta-celeb-card {
+  position: relative;
+  z-index: 2;
+  max-width: 420px;
+  width: 100%;
+  margin: 0 auto;
+  text-align: center;
+  animation: taCelebCardIn 0.45s ease-out 1;
+}
+
+@keyframes taCelebCardIn {
+  from {
+    opacity: 0;
+    transform: translateY(12px) scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.ta-celeb-heading {
+  margin: 0 0 10px;
+  font-size: 1.35rem;
+  color: var(--ta-ui-gold-a);
+}
+
+.ta-celeb-lead {
+  margin: 0 0 12px;
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--ta-ui-text);
+}
+
+.ta-celeb-copy {
+  margin: 0 0 16px;
+  font-size: 0.92rem;
+  line-height: 1.5;
+  color: var(--ta-ui-text-soft);
+}
+
+.ta-celeb-close {
+  width: 100%;
+  min-height: 48px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ta-celeb-burst {
+    animation: none !important;
+    opacity: 0.35;
+    transform: scale(0.85);
+  }
+
+  .ta-celeb-card {
+    animation: none !important;
+  }
+
+  .ta-celeb-root.ta-celeb-reduced .ta-celeb-fireworks {
+    opacity: 0.25;
+  }
+}
+
+/* Hub "Reduce motion" + OS preference — intro-only (games load ta-game-hub-prefs.js before CSS paints when script is in <head>) */
+html.ta-reduce-motion .trace-title.trace,
+html.ta-reduce-motion .trace-byline.trace {
+  animation: none !important;
+  width: auto !important;
+  opacity: 1 !important;
+  border-right: none !important;
+}
+
+html.ta-reduce-motion .trace-gold,
+html.ta-reduce-motion .trace-white {
+  animation: none !important;
+  width: auto !important;
+  border-right: none !important;
+}
+
+html.ta-reduce-motion .animate-title,
+html.ta-reduce-motion .animate-subtitle {
+  animation: none !important;
+  width: auto !important;
+  border-right: none !important;
+}
+
+html.ta-reduce-motion .intro-card .trace-title,
+html.ta-reduce-motion .intro-card .trace-subtitle {
+  width: auto !important;
+  border-right: none !important;
+}
+
+html.ta-reduce-motion .trace-logo text,
+html.ta-reduce-motion .trace-subtitle text {
+  animation: none !important;
+  stroke-dashoffset: 0 !important;
+}
+
+html.ta-reduce-motion .logo-svg #trace-main,
+html.ta-reduce-motion .logo-svg #trace-sub {
+  animation: none !important;
+  stroke-dashoffset: 0 !important;
+}
+
+html.ta-reduce-motion .trace-animate {
+  animation: none !important;
+}
+
+html.ta-reduce-motion #traceMain,
+html.ta-reduce-motion #traceSub {
+  stroke-dashoffset: 0 !important;
+  fill: rgba(255, 224, 104, 0.22) !important;
+}
+
+html.ta-reduce-motion .intro-overlay {
+  transition: none !important;
+}
+
+html.ta-reduce-motion .intro-overlay.fade-out {
+  animation: none !important;
+  opacity: 0 !important;
+}

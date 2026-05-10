@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="ta-game-help" content="Drag only the items needed for each lesson into your bag before time runs out.">
+  <meta name="ta-hub-game" content="Pack Your Bag">
+  <link rel="stylesheet" href="../../js/ta-game-mascot.css">
+  <title>Pack Your Bag</title>
+  <link rel="stylesheet" href="../../styles.css">
+  <link rel="stylesheet" href="../../js/ta-game-ui.css">
+  <link rel="stylesheet" href="./styles.css">
+  <script src="../../js/ta-game-hub-prefs.js"></script>
+</head>
+<body class="ta-game-page">
+  <div id="intro-screen" class="intro-screen">
+    <div class="intro-content">
+      <svg class="trace-logo" viewBox="0 0 900 220" aria-label="THTLabs logo">
+        <text x="50%" y="52%" dominant-baseline="middle" text-anchor="middle">THTLabs</text>
+      </svg>
+      <svg class="trace-subtitle" viewBox="0 0 700 130" aria-label="By Matei subtitle">
+        <text x="50%" y="54%" dominant-baseline="middle" text-anchor="middle">By Matei</text>
+      </svg>
+      <p id="typed-line" class="typed-line" aria-live="polite"></p>
+      <button id="skip-intro-btn" class="start-btn">Skip Intro</button>
+      <button id="start-btn" class="start-btn hidden">Start Game</button>
+    </div>
+  </div>
+
+  <main id="game-screen" class="game-screen hidden">
+    <a href="../../index.html?resume=1" class="gold-btn back-link hub-back-link">Back to Hub</a>
+    <header class="hud">
+      <div class="hud-box">
+        <span class="hud-label">Lesson</span>
+        <strong id="lesson-name">-</strong>
+      </div>
+      <div class="hud-box">
+        <span class="hud-label">Time</span>
+        <strong><span id="timer">0</span>s</strong>
+      </div>
+      <div class="hud-box">
+        <span class="hud-label">Score</span>
+        <strong id="score">0</strong>
+      </div>
+      <div class="hud-box">
+        <span class="hud-label">Round</span>
+        <strong id="round-indicator">0/0</strong>
+      </div>
+    </header>
+
+    <p class="ta-subtitle">Drag the right gear into your bag before each lesson timer ends.</p>
+    <section class="play-area ta-panel ta-panel--tight">
+      <section class="items-panel">
+        <h2>Drag the correct items</h2>
+        <p class="panel-note">Pack only what you need for this lesson.</p>
+        <div id="items-grid" class="items-grid"></div>
+      </section>
+
+      <section class="bag-panel">
+        <h2>School Bag</h2>
+        <div id="bag-dropzone" class="bag-dropzone">
+          <p class="bag-hint">Drop items here</p>
+          <div id="bag-items" class="bag-items"></div>
+        </div>
+        <div class="controls">
+          <button id="submit-round-btn" class="action-btn">Submit Round</button>
+        </div>
+      </section>
+    </section>
+
+    <section class="feedback-row">
+      <div id="feedback" class="feedback">Choose carefully and beat the timer!</div>
+    </section>
+    <section class="feedback-row">
+      <div class="feedback">
+        <strong>Your best</strong>
+        <p id="platformLeaderboard" class="personal-best-line"></p>
+      </div>
+    </section>
+  </main>
+
+  <script src="../../js/ta-game-skip-intro.js"></script>
+  <script src="../../js/core/bridge-global.js"></script>
+  <script src="../../js/ta-game-celebration.js"></script>
+  <script src="../../js/ta-game-ui.js"></script>
+  <script src="../../js/ta-game-mascot.js"></script>
+  <script type="module" src="./js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="ta-game-help" content="Pick the best response to each school situation — there are several rounds per run.">
+  <meta name="ta-hub-game" content="School Survival Day">
+  <link rel="stylesheet" href="../../js/ta-game-mascot.css">
+  <title>School Survival Day</title>
+  <link rel="stylesheet" href="../../styles.css">
+  <link rel="stylesheet" href="../../js/ta-game-ui.css">
+  <link rel="stylesheet" href="style.css">
+  <script src="../../js/ta-game-hub-prefs.js"></script>
+</head>
+<body class="ta-game-page">
+  <div id="introOverlay" class="intro-overlay">
+    <div class="trace-wrap">
+      <svg class="trace-logo" viewBox="0 0 1000 320" role="img" aria-label="THTLabs By Matei">
+        <text id="traceMain" x="500" y="145" text-anchor="middle">THTLabs</text>
+        <text id="traceSub" x="500" y="230" text-anchor="middle">By Matei</text>
+      </svg>
+      <p id="introMotto" class="intro-motto"></p>
+      <p class="intro-hint">Tap anywhere to skip</p>
+      <button id="skipIntroBtn" class="choice-button next" type="button">Skip Intro</button>
+    </div>
+  </div>
+
+  <main class="app app-hidden" id="gameApp">
+    <section class="game-card ta-panel" aria-live="polite">
+      <a href="../../index.html?resume=1" class="gold-btn back-link hub-back-link">Back to Hub</a>
+      <p class="ta-subtitle">Twenty sharp situations — pick kind, smart responses.</p>
+      <div class="top-row">
+        <h1 class="title">School Survival Day</h1>
+        <p class="score">Score: <span id="scoreValue">0</span></p>
+      </div>
+
+      <div class="progress-shell" aria-label="Progress">
+        <div id="progressFill" class="progress-fill"></div>
+      </div>
+      <p id="questionCounter" class="counter"></p>
+
+      <div id="sceneContainer" class="fade-in">
+        <p id="sceneText" class="scene-text"></p>
+        <div id="choices" class="choices" role="group" aria-label="Choices"></div>
+      </div>
+
+      <div id="feedbackContainer" class="feedback hidden">
+        <h2 id="feedbackTitle" class="feedback-title"></h2>
+        <p id="feedbackText" class="feedback-text"></p>
+        <button id="nextButton" class="choice-button next" type="button">Next Situation</button>
+      </div>
+
+      <div id="endingContainer" class="hidden">
+        <h2>Day Complete!</h2>
+        <p id="endingText" class="scene-text"></p>
+        <h3>Your best</h3>
+        <p id="platformLeaderboard" class="personal-best-line"></p>
+        <button id="restartButton" class="choice-button restart" type="button">Play again</button>
+      </div>
+    </section>
+  </main>
+
+  <script src="../../js/ta-game-skip-intro.js"></script>
+  <script src="../../js/core/bridge-global.js"></script>
+  <script src="../../js/ta-game-celebration.js"></script>
+  <script src="../../js/ta-game-ui.js"></script>
+  <script src="../../js/ta-game-mascot.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>

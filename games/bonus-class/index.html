@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="ta-game-help" content="Pick the best answer for each quick question — three rounds then see your score.">
+  <meta name="ta-hub-game" content="Bonus Class">
+  <link rel="stylesheet" href="../../js/ta-game-mascot.css">
+  <title>Bonus Class</title>
+  <link rel="stylesheet" href="../../styles.css">
+  <link rel="stylesheet" href="../../js/ta-game-ui.css">
+  <link rel="stylesheet" href="./styles.css">
+  <script src="../../js/ta-game-hub-prefs.js"></script>
+</head>
+<body class="ta-game-page">
+  <main class="bonus-shell ta-panel">
+    <a href="../../index.html?resume=1" class="gold-btn back-link">Back to Hub</a>
+    <h1>Bonus Class</h1>
+    <p class="bonus-lead">You found the secret session — one quick question for bonus XP.</p>
+    <p id="bonusQuestion" class="bonus-q">Ready?</p>
+    <div id="bonusChoices" class="bonus-choices"></div>
+    <p id="bonusResult" class="bonus-result" role="status"></p>
+    <p id="personalBest" class="personal-best-line"></p>
+    <button type="button" id="bonusAgain" class="gold-btn hidden">Try another</button>
+  </main>
+  <script src="../../js/ta-game-skip-intro.js"></script>
+  <script src="../../js/core/bridge-global.js"></script>
+  <script src="../../js/ta-game-celebration.js"></script>
+  <script src="../../js/ta-game-ui.js"></script>
+  <script src="../../js/ta-game-mascot.js"></script>
+  <script src="./script.js"></script>
+</body>
+</html>

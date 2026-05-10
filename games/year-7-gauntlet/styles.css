@@ -1,0 +1,112 @@
+.game-shell.gauntlet-shell {
+  width: min(580px, 96%);
+  margin: 14px auto;
+  text-align: center;
+}
+
+.gauntlet-intro {
+  text-align: left;
+  max-width: 440px;
+  margin: 0 auto 16px;
+  padding: 14px;
+  border: 1px solid var(--line, #3a3212);
+  border-radius: 14px;
+  background: var(--panel, #171717);
+}
+.gauntlet-intro-lead {
+  color: var(--text-b, #ffe288);
+  margin-bottom: 10px;
+}
+.gauntlet-intro-list {
+  margin: 8px 0 12px;
+  padding-left: 1.2em;
+  color: #ddcf96;
+}
+.gauntlet-intro-list li {
+  margin: 6px 0;
+}
+.gauntlet-intro .sub {
+  color: #b8b8b8;
+  font-size: 0.9rem;
+  margin-bottom: 12px;
+}
+
+.gauntlet-area.hidden {
+  display: none;
+}
+#introScreen.hidden {
+  display: none;
+}
+
+.gauntlet-hud {
+  font-weight: 700;
+}
+.gauntlet-action {
+  width: min(100%, 320px);
+  min-height: 110px;
+  font-size: 1.15rem;
+  margin: 12px auto;
+  display: block;
+}
+.gauntlet-action.tap-go {
+  background: linear-gradient(130deg, #7fff9a, #2ecc71);
+  color: #0a1f0a;
+  box-shadow: 0 0 18px rgba(46, 204, 113, 0.45);
+}
+.gauntlet-action.wait-phase {
+  opacity: 0.85;
+}
+.gauntlet-choices {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  max-width: 360px;
+  margin: 12px auto;
+}
+.gauntlet-choices button {
+  min-height: 48px;
+}
+
+.ghost-btn {
+  background: transparent;
+  border: 2px solid #ffbf00;
+  color: #ffe14f;
+  margin-top: 14px;
+}
+.personal-best-line {
+  color: #ddcf96;
+  margin: 12px 0;
+  font-size: 0.95rem;
+}
+
+button,
+.gold-btn,
+.gauntlet-action {
+  touch-action: manipulation;
+}
+
+.gauntlet-action,
+.ghost-btn,
+.gauntlet-choices button {
+  transition: transform 0.12s ease, box-shadow 0.18s ease, opacity 0.15s ease;
+}
+
+.gauntlet-action:active,
+.ghost-btn:active,
+.gauntlet-choices button:active {
+  transform: scale(0.985);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .gauntlet-action,
+  .ghost-btn,
+  .gauntlet-choices button {
+    transition: none;
+  }
+
+  .gauntlet-action:active,
+  .ghost-btn:active,
+  .gauntlet-choices button:active {
+    transform: none;
+  }
+}

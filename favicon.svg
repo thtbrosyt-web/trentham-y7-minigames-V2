@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" role="img" aria-label="THTLabs">
+  <defs>
+    <linearGradient id="g" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ffe14f"/>
+      <stop offset="100%" stop-color="#ffbf00"/>
+    </linearGradient>
+  </defs>
+  <rect width="32" height="32" rx="7" fill="#0a0a0a"/>
+  <path fill="url(#g)" d="M8 9h16v3.2H17.8V23h-3.6V12.2H8V9z"/>
+</svg>
